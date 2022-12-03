@@ -15,7 +15,7 @@ else
 	# Symbolic links
 	
 	## NeoVim
-	ln -s /bin/nvim v
+	ln -s /bin/nvim /bin/v
 
 	## Configuration Files
 
