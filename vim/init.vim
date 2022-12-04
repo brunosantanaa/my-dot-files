@@ -34,7 +34,7 @@ Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 call plug#end()
 
 " Import configuration -----------------------------------------------------------
-:source ~/.config/nvim/init.vim.before
+" :source ~/.config/nvim/init.vim.before
 :source ~/.bsa/vim/lint/coc.vim
 
 " Global Sets ------------------------------------------------------------------------

@@ -52,6 +52,7 @@ else
     # Install Prezto
     setopt EXTENDED_GLOB
     for rcfile in "${ZDOTDIR:-$HOME}"/.bsa/zprezto/runcoms/^README.md(.N); do
+        echo "Create ${rcfile:t}"
         if [ -L  "${ZDOTDIR:-$HOME}/.${rcfile:t}" ]; then
             rm  "${ZDOTDIR:-$HOME}/.${rcfile:t}"
         fi
