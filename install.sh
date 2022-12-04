@@ -5,15 +5,59 @@ if [ -d $BSA_DIR ]; then
 	echo "BSA dotFiles is installed"
 else
 	# Install dependencies
+    #
+    echo "Install - NeoVim | Tmux"
 	sudo apt install git neovim tmux
+    echo "Install pylint"
+    python -m pip install pylint
 
-    # Symbolic links
-    ln -s /bin/clangd-14 /usr/bin/clangd
-    ln -s /bin/clang-format-14 /usr/bin/clang-format
-    python -m pip install pylin
 	# Install BSA-dotFiles
-	git clone --depth=1 https://github.com/brunosantanaa/my-dot-files.git $BSA_DIR
-    $BSA_DIR/scripts/./nvim.sh
-    $BSA_DIR/scripts/./prezto.sh
+    #
+	echo "Make dir .bsa"
+    git clone --depth=1 https://github.com/brunosantanaa/my-dot-files.git $BSA_DIR
 
+    echo "Config NeoVim"
+    ## NeoVim
+	sudo ln -s /bin/nvim /usr/bin/v
+
+	### Configuration Files
+
+	NVIM_CONFIG="$HOME/.config/nvim"
+	if [ ! -d $NVIM_CONFIG ]; then
+		mkdir $NVIM_CONFIG
+	fi
+	if [ -e "$NVIM_CONFIG/init.vim" ]; then
+		mv "$NVIM_CONFIG/init.vim" "$NVIM_CONFIG/init.vim.before"
+		rm  "$NVIM_CONFIG/init.vim"
+    else
+        touch "$NVIM_CONFIG/init.vim.before"
+	fi
+	if [ -L "$NVIM_CONFIG/init.vim" ]; then
+		rm "$NVIM_CONFIG/init.vim"
+	fi
+	ln -s "$HOME/.bsa/vim/init.vim" "$NVIM_CONFIG/init.vim"
+
+    ### CoC - Config
+    ln -s "$HOME/.bsa/vim/lint/coc-settings.json" "$NVIM_CONFIG/coc-settings.json"
+
+    ### Install VimPlug
+    curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim \
+        --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+    ### Install Plugins
+    v -c PlugInstall -c q -c q
+    echo "Config Prezto"
+    # Install Prezto
+    setopt EXTENDED_GLOB
+    for rcfile in "${ZDOTDIR:-$HOME}"/.bsa/zprezto/runcoms/^README.md(.N); do
+        if [ -L  "${ZDOTDIR:-$HOME}/.${rcfile:t}" ]; then
+            rm  "${ZDOTDIR:-$HOME}/.${rcfile:t}"
+        fi
+
+        if [ -f "${ZDOTDIR:-$HOME}/.${rcfile:t}" ]; then
+            mv  "${ZDOTDIR:-$HOME}/.${rcfile:t}"  "${ZDOTDIR:-$HOME}/.${rcfile:t}.backup"
+        fi
+        ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
+    done
+    chsh -s /bin/zsh
 fi
