@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/zsh
 BSA_DIR="$HOME/.bsa"
 
 if [ -d $BSA_DIR ]; then
