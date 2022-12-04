@@ -128,5 +128,5 @@
 [include]
   path = .gitconfig.user
 [credential "https://github.com"]
-	helper = 
+	helper =
 	helper = !/usr/bin/gh auth git-credential
