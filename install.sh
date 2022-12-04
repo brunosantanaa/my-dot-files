@@ -94,4 +94,7 @@ else
        rm $GIT_IGNORE
     fi
     ln -s $BSA_DIR/git/gitconfig $HOME/.gitconfig
+
+    # Login GitHub
+    gh auth login
 fi
