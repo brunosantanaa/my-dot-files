@@ -72,7 +72,7 @@ else
     fi
     MESLO=$HOME/.fonts/Meslo
 
-    if [ -e $MESLO ]; then
+    if [ -d $MESLO ]; then
         rm -rf $MESLO
     fi
     ln -s $BSA_DIR/fonts/Meslo $MESLO
