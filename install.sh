@@ -63,4 +63,10 @@ else
         ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
     done
     chsh -s /bin/zsh
+
+    # Install Meslo Nerd Fonts
+   if [ ! -d "${$HOME}/.fonts" ]; then
+        mkdir ~/.fonts
+   fi
+   ln -s $BSA_DIR/fonts/Meslo $HOME/.fonts/Meslo
 fi
