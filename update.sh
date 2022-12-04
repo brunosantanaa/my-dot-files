@@ -5,7 +5,7 @@ BSA_HOME="$HOME/.bsa"
 cd $HOME && mv $BSA_HOME $BSA_HOME.backup
 
 # Install
-curl -fsSL https://raw.githubusercontent.com/brunosantanaa/my-dot-files/main/install.sh
+zsh -c "`curl -fsSL https://raw.githubusercontent.com/brunosantanaa/my-dot-files/main/install.sh`"
 
 # Test
 
