@@ -7,10 +7,19 @@ else
 	# Install dependencies
     #
     echo "Install - NeoVim | Tmux | Tilix | Node | asdf"
+    # GitHub repo
+    curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
+    && sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
+    && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
+    # NeoVim repo
     sudo add-apt-repository ppa:neovim-ppa/unstable
+
     sudo apt-get update
-	sudo apt install git neovim tmux tilix nodejs
+
+	sudo apt install git neovim tmux tilix nodejs gh -y
+    echo "Install asdf"
     git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.2
+
     echo "Install pylint"
     python -m pip install pylint
 
