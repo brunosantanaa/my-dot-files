@@ -7,6 +7,8 @@ else
 	# Install dependencies
     #
     echo "Install - NeoVim | Tmux"
+    sudo add-apt-repository ppa:neovim-ppa/unstable
+    sudo apt-get update
 	sudo apt install git neovim tmux
     echo "Install pylint"
     python -m pip install pylint

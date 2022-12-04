@@ -3,5 +3,5 @@
 ## Install
 
 ```bash
-sudo apt install zsh && sh -c "`curl -fsSL https://raw.githubusercontent.com/brunosantanaa/my-dot-files/main/install.sh`"
+sudo apt install zsh && zsh -c "`curl -fsSL https://raw.githubusercontent.com/brunosantanaa/my-dot-files/main/install.sh`"
 ```
