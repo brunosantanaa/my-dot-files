@@ -68,8 +68,17 @@ else
    if [ ! -d "${HOME}/.fonts" ]; then
         mkdir "${HOME}/.fonts"
    fi
-   ln -s $BSA_DIR/fonts/Meslo $HOME/.fonts/Meslo
+   MESLO=$HOME/.fonts/Meslo
+
+   if [ -L $MESLO ]; then
+       rm -rf $MESLO
+    fi
+    ln -s $BSA_DIR/fonts/Meslo $MESLO
 
    # Git
-   ln -s $BSA_DIR/git/gitconfig $HOME/.gitconfig
+   GIT_IGNORE=$HOME/.gitconfig
+   if [ -L $GIT_IGNORE ]; then
+       rm -rf $GIT_IGNORE
+    fi
+    ln -s $BSA_DIR/git/gitconfig $HOME/.gitconfig
 fi
