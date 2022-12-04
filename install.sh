@@ -65,20 +65,23 @@ else
     chsh -s /bin/zsh
 
     # Install Meslo Nerd Fonts
-   if [ ! -d "${HOME}/.fonts" ]; then
+    #
+    echo "Install NerdFonts-Meslo"
+    if [ ! -d "${HOME}/.fonts" ]; then
         mkdir "${HOME}/.fonts"
-   fi
-   MESLO=$HOME/.fonts/Meslo
+    fi
+    MESLO=$HOME/.fonts/Meslo
 
-   if [ -L $MESLO ]; then
-       rm -rf $MESLO
+    if [ -L $MESLO ]; then
+        rm $MESLO
     fi
     ln -s $BSA_DIR/fonts/Meslo $MESLO
 
    # Git
+   echo "Configure Git"
    GIT_IGNORE=$HOME/.gitconfig
    if [ -L $GIT_IGNORE ]; then
-       rm -rf $GIT_IGNORE
+       rm $GIT_IGNORE
     fi
     ln -s $BSA_DIR/git/gitconfig $HOME/.gitconfig
 fi
