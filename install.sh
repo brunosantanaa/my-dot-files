@@ -97,4 +97,5 @@ else
 
     # Login GitHub
     gh auth login
+    $BSA_DIR/git/./config_user.zsh
 fi
