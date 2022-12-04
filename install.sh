@@ -72,15 +72,15 @@ else
     fi
     MESLO=$HOME/.fonts/Meslo
 
-    if [ -L $MESLO ]; then
-        rm $MESLO
+    if [ -e $MESLO ]; then
+        rm -rf $MESLO
     fi
     ln -s $BSA_DIR/fonts/Meslo $MESLO
 
    # Git
    echo "Configure Git"
    GIT_IGNORE=$HOME/.gitconfig
-   if [ -L $GIT_IGNORE ]; then
+   if [ -e $GIT_IGNORE ]; then
        rm $GIT_IGNORE
     fi
     ln -s $BSA_DIR/git/gitconfig $HOME/.gitconfig
