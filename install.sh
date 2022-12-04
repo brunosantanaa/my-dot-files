@@ -69,4 +69,7 @@ else
         mkdir "${HOME}/.fonts"
    fi
    ln -s $BSA_DIR/fonts/Meslo $HOME/.fonts/Meslo
+
+   # Git
+   ln -s $BSA_DIR/git/gitconfig $HOME/.gitconfig
 fi
