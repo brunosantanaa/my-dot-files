@@ -2,7 +2,7 @@
 
 GIT_USER=$HOME/.gitconfig.user
 
-echo 'Config your GitHub Global user'
+echo 'Config your Git Glbal user'
 echo '------------------------------'
 if [ ! -e $GIT_USER ]; then
     echo 'Enter your name: '
