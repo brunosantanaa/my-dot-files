@@ -69,8 +69,15 @@ filetype plugin on		" Load the plugin file for the file type, if any
 filetype indent on		" Load the indent file for the file type, if any
 
 " ALE Sets  --------------------------------------------------------------------------
+let g:ale_linters = {
+            \ 'cpp': [],
+            \ 'c': [],
+            \ 'python': [],
+            \}
 let g:ale_fixers = {
-            \    '*': ['remove_trailing_lines', 'trim_whitespace'],
+            \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+            \   'cpp': ['clang-format'],
+            \   'c': ['clang-format'],
             \    }
 let g:ale_fix_on_save = 1
 

@@ -1,5 +1,5 @@
 	## NeoVim
-	ln -s /bin/nvim /bin/v
+	ln -s /bin/nvim /usr/bin/v
 
 	### Configuration Files
 

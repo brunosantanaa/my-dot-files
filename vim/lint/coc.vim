@@ -1,7 +1,14 @@
-call plug#begin()
-call plug#end()
-
-let g:coc_global_extensions= ['coc-snippets', 'coc-explorer']
+let g:coc_global_extensions = [
+            \ 'coc-snippets',
+            \ 'coc-explorer',
+            \ 'coc-pyright',
+            \ 'coc-cmake',
+            \ 'coc-java',
+            \ 'coc-tsserver',
+            \ 'coc-json',
+            \ 'coc-html',
+            \ 'coc-markdownlint',
+            \]
 
 " May need for vim (not neovim) since coc.nvim calculate byte offset by count
 " Some servers have issues with backup files, see #649.

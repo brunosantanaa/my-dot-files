@@ -5,42 +5,15 @@ if [ -d $BSA_DIR ]; then
 	echo "BSA dotFiles is installed"
 else
 	# Install dependencies
+	sudo apt install git neovim tmux clangd-14 clang-format-14 -y
 
-	sudo apt install git neovim tmux
-
+    # Symbolic links
+    ln -s /bin/clangd-14 /usr/bin/clangd
+    ln -s /bin/clang-format-14 /usr/bin/clang-format
+    python -m pip install pylin
 	# Install BSA-dotFiles
-
 	git clone --depth=1 https://github.com/brunosantanaa/my-dot-files.git $BSA_DIR
+    $BSA_DIR/scripts/./nvim.sh
+    $BSA_DIR/scripts/./prezto.sh
 
-	# Symbolic links
-
-	## NeoVim
-	ln -s /bin/nvim /bin/v
-
-	### Configuration Files
-
-	NVIM_CONFIG="$HOME/.config/nvim"
-	if [ ! -d $NVIM_CONFIG ]; then
-		mkdir $NVIM_CONFIG
-	fi
-	if [ -f "$NVIM_CONFIG/init.vim" ]; then
-		mv "$NVIM_CONFIG/init.vim" "$NVIM_CONFIG/init.vim.before"
-		rm  "$NVIM_CONFIG/init.vim"
-    else
-        touch "$NVIM_CONFIG/init.vim.before"
-	fi
-	if [ -L "$NVIM_CONFIG/init.vim" ]; then
-		rm "$NVIM_CONFIG/init.vim"
-	fi
-	ln -s "$HOME/.bsa/vim/init.vim" "$NVIM_CONFIG/init.vim"
-
-    ### CoC - Config
-    ln -s "$HOME/.bsa/vim/lint/coc-settings.json" "$NVIM_CONFIG/coc-settings.json"
-
-    ### Install VimPlug
-    curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim \
-        --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
-    ### Install Plugins
-    v -c PlugInstall -c q -c q
 fi

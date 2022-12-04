@@ -1,14 +1,22 @@
 {
     "languageserver": {
+        "arduino":{
+            "command":"/path/to/arduino-language-server",
+            "rootPatterns":["*.ino"],
+            "filetypes":["arduino"],
+            "args":["-cli", "/path/to/arduino-cli", "-clangd", "/path/to/clangd", "-cli-config", "/path/to/arduino-cli.yaml"]
+        },
     },
 
     "explorer.width": 30,
     "explorer.icon.enableNerdfont": true,
     "explorer.previewAction.onHover": false,
-    :explorer.keyMappings.global": {
+    "explorer.keyMappings.global": {
         "<cr>": ["expandable?", "expand", "open"],
         "v": "open:vsplit",
-        "h": "open:split"
+        "h": "open:split",
+        "snippets.ultisnips.pythonPrompt": false
     },
-    "explorer.git.enable": true
+    "explorer.git.enable": true,
+    "snippets.ultisnips.pythonPrompt": false
 }
