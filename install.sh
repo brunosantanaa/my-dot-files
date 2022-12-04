@@ -9,7 +9,7 @@ else
     echo "Install - NeoVim | Tmux"
     sudo add-apt-repository ppa:neovim-ppa/unstable
     sudo apt-get update
-	sudo apt install git neovim tmux
+	sudo apt install git neovim tmux tilix
     echo "Install pylint"
     python -m pip install pylint
 
@@ -65,8 +65,8 @@ else
     chsh -s /bin/zsh
 
     # Install Meslo Nerd Fonts
-   if [ ! -d "${$HOME}/.fonts" ]; then
-        mkdir ~/.fonts
+   if [ ! -d "${HOME}/.fonts" ]; then
+        mkdir "${HOME}/.fonts"
    fi
    ln -s $BSA_DIR/fonts/Meslo $HOME/.fonts/Meslo
 fi
