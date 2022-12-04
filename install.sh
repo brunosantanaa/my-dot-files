@@ -6,10 +6,11 @@ if [ -d $BSA_DIR ]; then
 else
 	# Install dependencies
     #
-    echo "Install - NeoVim | Tmux"
+    echo "Install - NeoVim | Tmux | Tilix | Node | asdf"
     sudo add-apt-repository ppa:neovim-ppa/unstable
     sudo apt-get update
-	sudo apt install git neovim tmux tilix
+	sudo apt install git neovim tmux tilix nodejs
+    git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.2
     echo "Install pylint"
     python -m pip install pylint
 
