@@ -22,6 +22,7 @@ sudo apt install zsh curl && sudo zsh -c "`curl -fsSL https://raw.githubusercont
 - QEMU
 - Meslo Fonts
 - Github cli
+- Rust
 - Environment Nuttx and ESP (*)
 - Environment Yocto (*)
 
