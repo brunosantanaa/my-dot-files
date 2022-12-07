@@ -21,7 +21,7 @@ else
     git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.2
 
     echo "Install pylint"
-    python -m pip install pylint
+    /bin/python -m pip install pylint
 
 	# Install BSA-dotFiles
     #
@@ -140,7 +140,7 @@ else
         sudo mkdir /opt/xtensa
         sudo mv xtensa-esp32-elf/ /opt/xtensa/
         echo "# Xtensa\nexport PATH=$PATH:/opt/xtensa/xtensa-esp32-elf/bin" >> ~/.localrc.zsh
-        python -m pip install esptool
+        /bin/python -m pip install esptool
         if [[ -d "${HOME}/nuttxspace/esp-bins" ]]; then
             rm -rf "${HOME}/nuttxspace/esp-bins"
         fi
