@@ -9,6 +9,18 @@ Run the following code in your bash or sh termial.
 ```bash
 sudo apt install zsh curl && sudo zsh -c "`curl -fsSL https://raw.githubusercontent.com/brunosantanaa/my-dot-files/main/install.zsh`"
 ```
+### Update
+
+```bash
+cd ~/.bsa
+git pull && ./update.zsh
+```
+
+## Environment Variables
+
+```bash
+echo "export [YOUR EXPORT]" >> ~/.localrc.zsh
+```
 
 ## Content
 
