@@ -5,7 +5,7 @@ if [ -d $BSA_DIR ]; then
 	echo "BSA dotFiles is installed"
     read "REPLY?Would you like to run the update file? (y/N)"
     if [[ $REPLY = "y" ]]; then
-        ./update.sh
+        ./update.zsh
     fi
 else
 	# Install dependencies
