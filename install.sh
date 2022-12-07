@@ -6,7 +6,7 @@ if [ -d $BSA_DIR ]; then
 else
 	# Install dependencies
     #
-    echo "Install - NeoVim | Tmux | Tilix | Node | asdf"
+    echo "Install - NeoVim | Tmux | Tilix | Node | asdf | QEMU"
     # GitHub repo
     curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
     && sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
@@ -16,7 +16,7 @@ else
 
     sudo apt-get update
 
-	sudo apt install git neovim tmux tilix nodejs gh -y
+	sudo apt install git neovim tmux tilix nodejs gh qemu -y
     echo "Install asdf"
     git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.2
 
@@ -163,4 +163,6 @@ else
             python3-pexpect xz-utils debianutils iputils-ping python3-git python3-jinja2 libegl1-mesa \
             libsdl1.2-dev xterm python3-subunit mesa-common-dev zstd liblz4-tool -y
     fi
+
+    echo "Complete!"
 fi
