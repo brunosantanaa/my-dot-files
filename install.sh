@@ -33,7 +33,7 @@ else
         echo "# asdf\n. $HOME/.asdf/asdf.sh" >> $LOCAL_RC
         echo "fpath=(${ASDF_DIR}/completions $fpath)" >> $LOCAL_RC
         echo "# Cargo\n. $HOME/.cargo/env" >> $LOCAL_RC
-        echo "# Go\nexport PATH=$PATH:/usr/local/go/bin" >> $LOCAL_RC
+        echo "# Go\nexport PATH=\$PATH:/usr/local/go/bin" >> $LOCAL_RC
     fi
 
     git clone --depth=1 https://github.com/brunosantanaa/my-dot-files.git $BSA_DIR
@@ -139,13 +139,28 @@ else
         curl https://dl.espressif.com/dl/xtensa-esp32-elf-gcc8_2_0-esp-2020r2-linux-amd64.tar.gz | tar -xz
         sudo mkdir /opt/xtensa
         sudo mv xtensa-esp32-elf/ /opt/xtensa/
-        echo "# Xtensa\nexport PATH=$PATH:/opt/xtensa/xtensa-esp32-elf/bin" >> ~/.localrc.zsh
+        echo "# Xtensa\nexport PATH=\$PATH:/opt/xtensa/xtensa-esp32-elf/bin" >> $LOCAL_RC
         /bin/python -m pip install esptool
         if [[ -d "${HOME}/nuttxspace/esp-bins" ]]; then
             rm -rf "${HOME}/nuttxspace/esp-bins"
         fi
         mkdir "${HOME}/nuttxspace/esp-bins"
-        curl -L "https://github.com/espressif/esp-nuttx-bootloader/releases/download/latest/bootloader-esp32.bin" -o "${HOME}/nuttxspace/esp-bins/bootloader-esp32.bin"
-        curl -L "https://github.com/espressif/esp-nuttx-bootloader/releases/download/latest/partition-table-esp32.bin" -o "${HOME}/nuttxspace/esp-bins/partition-table-esp32.bin"
+        curl -L "https://github.com/espressif/esp-nuttx-bootloader/releases/download/latest/bootloader-esp32.bin" \
+            -o "${HOME}/nuttxspace/esp-bins/bootloader-esp32.bin"
+        curl -L "https://github.com/espressif/esp-nuttx-bootloader/releases/download/latest/partition-table-esp32.bin" \
+            -o "${HOME}/nuttxspace/esp-bins/partition-table-esp32.bin"
+
+        wget -qO- "https://github.com/espressif/binutils-gdb/releases/download/esp-gdb-v12.1_20221002/xtensa-esp-elf-gdb-12.1_20221002-x86_64-linux-gnu.tar.gz" | tar -xvz
+        sudo mv xtensa-esp-elf-gdb/ /opt/xtensa/
+        echo "export PATH=\$PATH:/opt/xtensa/xtensa-esp-elf-gdb/bin" >> $LOCAL_RC
+        echo "export QEMU_XTENSA_CORE_REGS_ONLY=1" >> $LOCAL_RC
+    fi
+
+    # Yocto
+    read "REPLY?Would you like to install dependencies to compile Yocto Projet? (y/N)"
+    if [[ $REPLY = "y" ]]; then
+        sudo apt install gawk wget git diffstat unzip texinfo gcc build-essential chrpath socat cpio \
+            python3-pexpect xz-utils debianutils iputils-ping python3-git python3-jinja2 libegl1-mesa \
+            libsdl1.2-dev xterm python3-subunit mesa-common-dev zstd liblz4-tool -y
     fi
 fi
