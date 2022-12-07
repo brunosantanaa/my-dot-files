@@ -37,6 +37,7 @@ else
         echo "# asdf\n. \$HOME/.asdf/asdf.sh" >> $LOCAL_RC
         echo "fpath=(\${ASDF_DIR}/completions \$fpath)" >> $LOCAL_RC
         echo "# Go\nexport PATH=\$PATH:/usr/local/go/bin" >> $LOCAL_RC
+        echo "# Rust\n export PATH=\$PATH:/\$HOME/.cargo/bin"
     fi
 
     git clone --depth=1 https://github.com/brunosantanaa/my-dot-files.git $BSA_DIR
