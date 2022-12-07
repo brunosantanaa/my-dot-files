@@ -139,5 +139,13 @@ else
         curl https://dl.espressif.com/dl/xtensa-esp32-elf-gcc8_2_0-esp-2020r2-linux-amd64.tar.gz | tar -xz
         sudo mkdir /opt/xtensa
         sudo mv xtensa-esp32-elf/ /opt/xtensa/
+        echo "# Xtensa\nexport PATH=$PATH:/opt/xtensa/xtensa-esp32-elf/bin" >> ~/.localrc.zsh
+        python -m pip install esptool
+        if [[ -d "${HOME}/nuttxspace/esp-bins" ]]; then
+            rm -rf "${HOME}/nuttxspace/esp-bins"
+        fi
+        mkdir "${HOME}/nuttxspace/esp-bins"
+        curl -L "https://github.com/espressif/esp-nuttx-bootloader/releases/download/latest/bootloader-esp32.bin" -o "${HOME}/nuttxspace/esp-bins/bootloader-esp32.bin"
+        curl -L "https://github.com/espressif/esp-nuttx-bootloader/releases/download/latest/partition-table-esp32.bin" -o "${HOME}/nuttxspace/esp-bins/partition-table-esp32.bin"
     fi
 fi
