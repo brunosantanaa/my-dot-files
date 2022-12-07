@@ -10,8 +10,8 @@ if [ ! -e $GIT_USER ]; then
     echo 'Enter your e-mail: '
     read EMAIL
     echo "[user]" > $GIT_USER
-	echo "\tname = ${NAME}" >> $GIT_USER
-	echo "\tmail = ${EMAIL}" >> $GIT_USER
+	echo "\tname = \"${NAME}\"" >> $GIT_USER
+	echo "\temail = \"${EMAIL}\"" >> $GIT_USER
 else
     echo 'Current settings: '
     cat $HOME/.gitconfig.user
