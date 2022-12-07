@@ -31,6 +31,9 @@ Plug 'honza/vim-snippets'
 " Telescope search
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+
+" Color preview
+Plug 'RRethy/vim-hexokinase', { 'do': 'make hexokinase' }
 call plug#end()
 
 " Import configuration -----------------------------------------------------------
@@ -51,10 +54,9 @@ set incsearch 			" Incremental search
 set ignorecase			" Ignore case in search
 set smartcase			" Consider case if there is a upper case character
 set scrolloff=8			" Minimum number of lines to keep above and below the cursor
-set colorcolumn=100		" Draws a line at the given line to keep aware of the line size
+set colorcolumn=200		" Draws a line at the given line to keep aware of the line size
 set signcolumn=yes		" Add a column on the left. Useful for linting
 set cmdheight=2 		" Givemore space for displaying messages
-set updatetime=100		" Time in miliseconds to consider the changes
 set encoding=utf-8		" The ecoding should be utf-8
 set nobackup			" No backup files
 set nowritebackup		" NO backup files
@@ -62,11 +64,18 @@ set splitright			" Create the vertical splits to the right
 set splitbelow			" Create the horizontal splits below
 set autoread			" Update Vim after file update from outside
 set nocompatible        " Polyglot needs this
-"set mouse=a			" Enable mouse support
-"set cursorline         " Enable highlight for the current line
+set termguicolors
+set mouse=a			" Enable mouse support
+set cursorline         " Enable highlight for the current line
+highlight Cursorline cterm=bold ctermbg=gray
 filetype on			    " Detect and set the filetype option and ttrigger the FileType
 filetype plugin on		" Load the plugin file for the file type, if any
 filetype indent on		" Load the indent file for the file type, if any
+
+" Color Preview conf -----------------------------------------------------------------
+" Hexokinase
+" Neovim default
+let g:Hexokinase_highlighters = [ 'virtual' ]
 
 " ALE Sets  --------------------------------------------------------------------------
 let g:ale_linters = {

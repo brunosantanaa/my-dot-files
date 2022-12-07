@@ -26,6 +26,12 @@ else
 	# Install BSA-dotFiles
     #
 	echo "Make dir .bsa"
+    LOCAL_RC="${HOME}/.localrc.zsh"
+    if [[ -e $LOCAL_RC ]]; then
+        echo "###################################################################" > $LOCAL_RC
+        echo "# Profile definitions" >> $LOCAL_RC
+    fi
+
     git clone --depth=1 https://github.com/brunosantanaa/my-dot-files.git $BSA_DIR
 
     echo "Config NeoVim"
@@ -98,4 +104,36 @@ else
     # Login GitHub
     gh auth login
     $BSA_DIR/git/./config_user.zsh
+
+    # Nuttx Compile dependencies and ESP
+    read -q "REPLY?Would you like to install Nuttx and ESP compile dependencies? (y/N)"
+    if [[ $REPLY  = "y" ]]; then
+        # Prerequisites
+        sudo apt install  \
+            bison flex gettext texinfo libncurses5-dev libncursesw5-dev \
+            gperf automake libtool pkg-config build-essential gperf genromfs \
+            libgmp-dev libmpc-dev libmpfr-dev libisl-dev binutils-dev libelf-dev \
+            libexpat-dev gcc-multilib g++-multilib picocom u-boot-tools util-linux -y
+            kconfig-frontends -y
+        # KConfig frontend
+        sudo apt install kconfig-frontends -y
+        # Toolchain
+        sudo apt install gcc-arm-none-eabi binutils-arm-none-eabi -y
+        # ESP-QEMU
+        sudo apt install libglib2.0-dev libfdt-dev libpixman-1-dev \
+            zlib1g-dev ninja-build libgcrypt-dev -y
+        if [[ -d "${HOME}/Qemu/esp-qemu" ]]; then
+            rm -rf "${HOME}/Qemu/esp-qemu"
+        fi
+        if [[ -d "${HOME}/nuttxspace" ]]; then
+            rm -rf "${HOME}/nuttxspace"
+        fi
+        git clone https://github.com/apache/nuttx.git "${HOME}/nuttxspace/nuttx"
+        git clone https://github.com/apache/nuttx-apps "${HOME}/nuttxspace/apps"
+        git clone https://github.com/espressif/qemu "${HOME}/Qemu/esp-qemu"
+
+        curl https://dl.espressif.com/dl/xtensa-esp32-elf-gcc8_2_0-esp-2020r2-linux-amd64.tar.gz | tar -xz
+        sudo mkdir /opt/xtensa
+        sudo mv xtensa-esp32-elf/ /opt/xtensa/
+    fi
 fi

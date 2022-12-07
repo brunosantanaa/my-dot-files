@@ -195,4 +195,4 @@ zstyle -a ':prezto:load' pmodule 'pmodules'
 pmodload "$pmodules[@]"
 unset pmodules
 
-. $HOME/.bsa/localrc.zsh
+. $HOME/.localrc.zsh
