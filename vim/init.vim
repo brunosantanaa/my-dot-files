@@ -34,6 +34,9 @@ Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 
 " Color preview
 Plug 'RRethy/vim-hexokinase', { 'do': 'make hexokinase' }
+
+" Rust
+Plug 'rust-lang/rust.vim'
 call plug#end()
 
 " Import configuration -----------------------------------------------------------
@@ -72,6 +75,9 @@ filetype on			    " Detect and set the filetype option and ttrigger the FileType
 filetype plugin on		" Load the plugin file for the file type, if any
 filetype indent on		" Load the indent file for the file type, if any
 
+" Rust conf --------------------------------------------------------------------------
+let g:rust_clip_command = 'xclip -selection clipboard'
+let g:rustfmt_autosave = 1
 " Color Preview conf -----------------------------------------------------------------
 " Hexokinase
 " Neovim default

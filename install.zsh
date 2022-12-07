@@ -3,10 +3,14 @@ BSA_DIR="$HOME/.bsa"
 
 if [ -d $BSA_DIR ]; then
 	echo "BSA dotFiles is installed"
+    read "REPLY?Would you like to run the update file? (y/N)"
+    if [[ $REPLY = "y" ]]; then
+        ./update.sh
+    fi
 else
 	# Install dependencies
     #
-    echo "Install - NeoVim | Tmux | Tilix | Node | asdf | QEMU"
+    echo "Install - NeoVim | Tmux | Tilix | Node | Rust | asdf | QEMU"
     # GitHub repo
     curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
     && sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
@@ -15,8 +19,8 @@ else
     sudo add-apt-repository ppa:neovim-ppa/unstable
 
     sudo apt-get update
-
 	sudo apt install git neovim tmux tilix nodejs gh qemu -y
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
     echo "Install asdf"
     git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.2
 
@@ -32,7 +36,6 @@ else
         echo "# Profile definitions" >> $LOCAL_RC
         echo "# asdf\n. \$HOME/.asdf/asdf.sh" >> $LOCAL_RC
         echo "fpath=(\${ASDF_DIR}/completions \$fpath)" >> $LOCAL_RC
-        echo "# Cargo\n. \$HOME/.cargo/env" >> $LOCAL_RC
         echo "# Go\nexport PATH=\$PATH:/usr/local/go/bin" >> $LOCAL_RC
     fi
 
