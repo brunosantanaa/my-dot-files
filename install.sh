@@ -30,9 +30,9 @@ else
     if [[ ! -e $LOCAL_RC ]]; then
         echo "###################################################################" > $LOCAL_RC
         echo "# Profile definitions" >> $LOCAL_RC
-        echo "# asdf\n. $HOME/.asdf/asdf.sh" >> $LOCAL_RC
-        echo "fpath=(${ASDF_DIR}/completions $fpath)" >> $LOCAL_RC
-        echo "# Cargo\n. $HOME/.cargo/env" >> $LOCAL_RC
+        echo "# asdf\n. \$HOME/.asdf/asdf.sh" >> $LOCAL_RC
+        echo "fpath=(\${ASDF_DIR}/completions \$fpath)" >> $LOCAL_RC
+        echo "# Cargo\n. \$HOME/.cargo/env" >> $LOCAL_RC
         echo "# Go\nexport PATH=\$PATH:/usr/local/go/bin" >> $LOCAL_RC
     fi
 
