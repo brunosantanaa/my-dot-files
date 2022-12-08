@@ -8,6 +8,7 @@ let g:coc_global_extensions = [
             \ 'coc-json',
             \ 'coc-html',
             \ 'coc-markdownlint',
+            \ 'coc-clangd'
             \]
 
 " May need for vim (not neovim) since coc.nvim calculate byte offset by count
