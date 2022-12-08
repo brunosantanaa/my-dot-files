@@ -19,7 +19,7 @@ else
     sudo add-apt-repository ppa:neovim-ppa/unstable
 
     sudo apt-get update
-	sudo apt install git neovim tmux tilix nodejs gh qemu -y
+	sudo apt install git neovim xsel tmux tilix nodejs gh qemu -y
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
     echo "Install asdf"
     git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.2
@@ -46,8 +46,8 @@ else
     echo "Install Clang AND Clangd"
     sudo bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
     CLANG_VERSION=$(ls /bin | grep clang-cpp- | cut -f3 -d'-')
-    sudo apt install clang-format-$CLANG_VERSION
-
+    sudo apt install clang-format-$CLANG_VERSION -y
+    sudo apt install gcc-12 gcc-12-base gcc-12-doc g++-12 -y
     echo "Config NeoVim"
     ## NeoVim
 	sudo ln -s /bin/nvim /usr/bin/v

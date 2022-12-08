@@ -70,6 +70,7 @@ set nocompatible        " Polyglot needs this
 set termguicolors
 set mouse=a			" Enable mouse support
 set cursorline         " Enable highlight for the current line
+set clipboard+=unnamedplus
 highlight Cursorline cterm=bold ctermbg=gray
 filetype on			    " Detect and set the filetype option and ttrigger the FileType
 filetype plugin on		" Load the plugin file for the file type, if any
