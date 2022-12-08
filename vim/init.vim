@@ -105,7 +105,8 @@ let g:ale_c_clangformat_options = '"-style={
             \ FixNamespaceComments: true,
             \ ReflowComments: false,
             \ }"'
-
+" NERDTree ------------------------
+let NERDTreeShowHidden=1
 " Remaps  ----------------------------------------------------------------------------
 " NERDTree
 nnoremap <C-b> :NERDTreeToggle<CR>

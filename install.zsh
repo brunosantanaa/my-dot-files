@@ -47,8 +47,6 @@ else
     sudo bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
     CLANG_VERSION=$(ls /bin | grep clang-cpp- | cut -f3 -d'-')
     sudo apt install clang-format-$CLANG_VERSION
-    sudo update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-$CLANG_VERSION 100
-    sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-$CLANG_VERSION 100
 
     echo "Config NeoVim"
     ## NeoVim
