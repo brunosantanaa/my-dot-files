@@ -7,8 +7,9 @@ Only to prepare my environment!! :bowtie:
 Run the following code in your bash or sh termial.
 
 ```bash
-sudo apt install zsh curl && sudo zsh -c "`curl -fsSL https://raw.githubusercontent.com/brunosantanaa/my-dot-files/main/install.zsh`"
+sudo apt install zsh curl && zsh -c "`curl -fsSL https://raw.githubusercontent.com/brunosantanaa/my-dot-files/main/install.zsh`"
 ```
+
 ### Update
 
 ```bash
