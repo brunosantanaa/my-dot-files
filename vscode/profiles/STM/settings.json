@@ -1,12 +1,8 @@
 {
-    "STM32VSCodeExtension.projectCreator.executablePath": "/home/bruno/STM32CubeMX/STM32CubeMX",
-    "STM32VSCodeExtension.productFinder.executablePath": "/home/bruno/STMCUFinder/STMCUFinder",
     "workbench.iconTheme": "material-icon-theme",
     "extensions.ignoreRecommendations": true,
     "terminal.integrated.fontSize": 11,
     "terminal.integrated.fontFamily": "MesloLGS NF",
-    "doxdocgen.generic.authorName": "Bruno de Santana",
-    "doxdocgen.generic.authorEmail": "b.desantanaalves@cleio.com",
     "[c]": {
         "editor.wordBasedSuggestions": "off",
         "editor.suggest.insertMode": "replace",
@@ -28,9 +24,6 @@
         "workbench.action.tasks.configureTaskRunner",
         "workbench.action.tasks.runTask"
     ],
-    "cmake.environment": {
-        "PATH": "/home/bruno/.vscode/extensions/stmicroelectronics.stm32cube-ide-build-cmake-1.42.2/resources/cube-cmake/linux:/home/bruno/.vscode/extensions/stmicroelectronics.stm32cube-ide-core-1.0.3/resources/binaries/linux/x86_64:${env.PATH}"
-    },
     "stm32cube-ide-clangd.detectExtensionConflicts": false,
     "github.copilot.nextEditSuggestions.enabled": true,
     "claudeCode.preferredLocation": "panel"

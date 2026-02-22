@@ -128,4 +128,47 @@ if [ ${#_profiles_missing[@]} -gt 0 ]; then
     echo "    zsh $DOTFILES_DIR/vscode/install.zsh"
 fi
 
+# ─── Inject author info for doxygen (local only, not stored in repo) ──────────
+_inject_author_settings() {
+    local settings_file="$1" author_name="$2" author_email="$3"
+    [ -f "$settings_file" ] || return
+    python3 - "$settings_file" "$author_name" "$author_email" <<'PYEOF'
+import json, sys, os
+path, name, email = sys.argv[1], sys.argv[2], sys.argv[3]
+# Materialize symlink so we don't modify the repo file
+if os.path.islink(path):
+    content = open(os.path.realpath(path)).read()
+    os.unlink(path)
+    with open(path, 'w') as f:
+        f.write(content)
+with open(path) as f:
+    d = json.load(f)
+d["doxdocgen.generic.authorName"] = name
+d["doxdocgen.generic.authorEmail"] = email
+with open(path, 'w') as f:
+    json.dump(d, f, indent=4)
+PYEOF
+}
+
+echo ""
+echo "==> Author info for doxygen comments (stored locally, not in repo)"
+read "AUTHOR_NAME?  Name  (leave blank to skip): "
+if [[ -n "$AUTHOR_NAME" ]]; then
+    read "AUTHOR_EMAIL?  Email: "
+
+    _inject_author_settings "$VSCODE_USER/settings.json" "$AUTHOR_NAME" "$AUTHOR_EMAIL"
+    echo "  injected into: default profile"
+
+    for profile_src in "$DOTFILES_DIR/vscode/profiles/"/*/; do
+        profile_name=$(basename "$profile_src")
+        [ -f "$profile_src/settings.json" ] || continue
+        profile_location=$(_get_profile_location "$profile_name")
+        [ -z "$profile_location" ] && continue
+        _inject_author_settings \
+            "$VSCODE_USER/profiles/$profile_location/settings.json" \
+            "$AUTHOR_NAME" "$AUTHOR_EMAIL"
+        echo "  injected into: $profile_name"
+    done
+fi
+
 echo "==> VSCode configured!"
