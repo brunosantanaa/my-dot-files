@@ -16,5 +16,5 @@ else
     echo 'Current settings: '
     cat $HOME/.gitconfig.user
     echo 'To update your settings you can run the following command: '
-    echo 'rm ~/.gitconfig.user && ~/.bsa/git/./config_user.zsh '
+    echo 'rm ~/.gitconfig.user && ~/.dotfiles/git/config_user.zsh'
 fi
