@@ -67,7 +67,8 @@ mkdir -p "$NVIM_CONFIG"
 
 for target_src in \
     "init.vim:$DOTFILES_DIR/vim/init.vim" \
-    "coc-settings.json:$DOTFILES_DIR/vim/lint/coc-settings.json"; do
+    "coc-settings.json:$DOTFILES_DIR/vim/lint/coc-settings.json" \
+    "coc.vim:$DOTFILES_DIR/vim/lint/coc.vim"; do
     name="${target_src%%:*}"
     src="${target_src##*:}"
     dest="$NVIM_CONFIG/$name"

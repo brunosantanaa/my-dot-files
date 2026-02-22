@@ -32,7 +32,7 @@ if [[ "$OS" == "Darwin" ]]; then
     fi
 
     echo "==> Installing packages via Homebrew..."
-    brew install git neovim tmux gh gcc llvm wget
+    brew install git neovim tmux gh gcc llvm wget node go
     brew install --cask visual-studio-code iterm2
 
     echo "==> Installing Rust..."
@@ -69,7 +69,7 @@ elif [[ "$OS" == "Linux" ]]; then
         git neovim tmux tilix gh \
         build-essential \
         gcc-${GCC_VERSION} g++-${GCC_VERSION} \
-        wget
+        wget nodejs golang
 
     # Latest Clang via llvm.sh
     echo "==> Installing latest Clang..."
@@ -126,7 +126,8 @@ mkdir -p "$NVIM_CONFIG"
 
 for target_src in \
     "init.vim:$DOTFILES_DIR/vim/init.vim" \
-    "coc-settings.json:$DOTFILES_DIR/vim/lint/coc-settings.json"; do
+    "coc-settings.json:$DOTFILES_DIR/vim/lint/coc-settings.json" \
+    "coc.vim:$DOTFILES_DIR/vim/lint/coc.vim"; do
     name="${target_src%%:*}"
     src="${target_src##*:}"
     dest="$NVIM_CONFIG/$name"

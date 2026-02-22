@@ -41,7 +41,7 @@ call plug#end()
 
 " Import configuration -----------------------------------------------------------
 " :source ~/.config/nvim/init.vim.before
-:source ~/.bsa/vim/lint/coc.vim
+:source ~/.config/nvim/coc.vim
 
 " Global Sets ------------------------------------------------------------------------
 syntax on			    " Sintax highlight
