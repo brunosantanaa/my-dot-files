@@ -1,0 +1,24 @@
+// Place your key bindings in this file to override the defaultsauto[]
+[
+    {
+        "key": "ctrl+shift+j",
+        "command": "editor.action.transformToUppercase"
+    },
+    {
+        "key": "ctrl+shift+k",
+        "command": "editor.action.transformToLowercase"
+    },
+    {
+        "key": "ctrl+shift+v",
+        "command": "preview-vscode.showPreview",
+        "when": "editorTextFocus && !notebookEditorFocused && editorLangId != 'markdown' || explorerViewletVisible && filesExplorerFocus && !notebookEditorFocused && editorLangId != 'markdown'"
+    },
+    {
+        "key": "shift+enter",
+        "command": "workbench.action.terminal.sendSequence",
+        "args": {
+            "text": "\\\r\n"
+        },
+        "when": "terminalFocus"
+    }
+]

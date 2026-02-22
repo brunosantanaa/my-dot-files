@@ -161,6 +161,12 @@ if [[ "$OS" == "Linux" ]]; then
     fc-cache -fv
 fi
 
+# ─── VSCode Settings & Profiles ───────────────────────────────────────────────
+read "REPLY?Configure VSCode settings and profiles? (y/N) "
+if [[ $REPLY == "y" ]]; then
+    zsh "$DOTFILES_DIR/vscode/install.zsh" "$DOTFILES_DIR"
+fi
+
 # ─── KiCad Tools ──────────────────────────────────────────────────────────────
 read "REPLY?Install KiCad tools (easyeda2kicad)? (y/N) "
 if [[ $REPLY == "y" ]]; then

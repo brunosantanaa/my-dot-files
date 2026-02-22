@@ -89,6 +89,12 @@ echo "==> Re-linking Git config..."
 [ -f "$HOME/.gitconfig" ] && mv "$HOME/.gitconfig" "$HOME/.gitconfig.backup"
 ln -s "$DOTFILES_DIR/git/gitconfig" "$HOME/.gitconfig"
 
+# ─── VSCode Settings & Profiles ───────────────────────────────────────────────
+if command -v code &>/dev/null; then
+    echo "==> Re-applying VSCode settings and profiles..."
+    zsh "$DOTFILES_DIR/vscode/install.zsh" "$DOTFILES_DIR"
+fi
+
 # ─── KiCad Tools ──────────────────────────────────────────────────────────────
 PIP=$(command -v pip3 2>/dev/null || command -v pip 2>/dev/null)
 if [[ -n "$PIP" ]] && "$PIP" show easyeda2kicad &>/dev/null; then

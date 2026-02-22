@@ -1,0 +1,15 @@
+trond-snekvik.gnu-mapfiles
+josetr.cmake-language-support-vscode
+cschlosser.doxdocgen
+xaver.clang-format
+dracula-theme.theme-dracula
+azemoh.one-monokai
+nordic-semiconductor.nrf-terminal
+ms-vscode.vscode-serial-monitor
+zhuangtongfa.material-theme
+nordic-semiconductor.nrf-kconfig
+nordic-semiconductor.nrf-devicetree
+ms-dotnettools.vscode-dotnet-runtime
+nordic-semiconductor.nrf-connect
+pkief.material-icon-theme
+ms-vscode-remote.remote-containers

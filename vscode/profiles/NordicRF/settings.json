@@ -1,0 +1,14 @@
+{
+    "workbench.colorTheme": "One Monokai",
+    "nrf-connect.enableTelemetry": true,
+    "workbench.iconTheme": "material-icon-theme",
+    "extensions.ignoreRecommendations": true,
+    "terminal.integrated.fontFamily": "MesloLGS Nerd Font",
+    "terminal.integrated.fontSize": 11,
+    "editor.formatOnSave": true,
+    "doxdocgen.generic.authorName": "Bruno de Santana",
+    "doxdocgen.generic.authorEmail": "b.desantanaalves@cleio.com",
+    "files.associations": {
+        "*.h": "c"
+    }
+}

@@ -1,0 +1,128 @@
+{
+    "yaml.schemas": {
+        "file:///home/bruno/.vscode/extensions/atlassian.atlascode-3.8.10/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+    },
+    "atlascode.jira.jqlList": [
+        {
+            "id": "595ad21f-4507-4377-bac8-152256ec2e22",
+            "enabled": true,
+            "name": "My fromnovo Issues",
+            "query": "assignee = currentUser() AND resolution = Unresolved ORDER BY lastViewed DESC",
+            "siteId": "78b17512-3be1-4aeb-af6e-714467ade5bf",
+            "monitor": true
+        }
+    ],
+    "redhat.telemetry.enabled": false,
+    "STM32VSCodeExtension.projectCreator.executablePath": "/home/bruno/STM32CubeMX/STM32CubeMX",
+    "idf.espIdfPath": "/home/bruno/esp/v5.4.1/esp-idf",
+    "idf.pythonBinPath": "/home/bruno/.espressif/python_env/idf5.3_py3.11_env/bin/python",
+    "idf.toolsPath": "/home/bruno/.espressif",
+    "idf.customExtraPaths": "/home/bruno/.espressif/tools/xtensa-esp-elf-gdb/14.2_20240403/xtensa-esp-elf-gdb/bin:/home/bruno/.espressif/tools/riscv32-esp-elf-gdb/14.2_20240403/riscv32-esp-elf-gdb/bin:/home/bruno/.espressif/tools/xtensa-esp-elf/esp-13.2.0_20240530/xtensa-esp-elf/bin:/home/bruno/.espressif/tools/riscv32-esp-elf/esp-13.2.0_20240530/riscv32-esp-elf/bin:/home/bruno/.espressif/tools/esp32ulp-elf/2.38_20240113/esp32ulp-elf/bin:/home/bruno/.espressif/tools/openocd-esp32/v0.12.0-esp32-20240318/openocd-esp32/bin:/home/bruno/.espressif/tools/esp-rom-elfs/20240305",
+    "idf.customExtraVars": {
+        "OPENOCD_SCRIPTS": "/home/bruno/.espressif/tools/openocd-esp32/v0.12.0-esp32-20240318/openocd-esp32/share/openocd/scripts",
+        "ESP_ROM_ELF_DIR": "/home/bruno/.espressif/tools/esp-rom-elfs/20240305/"
+    },
+    "idf.gitPath": "git",
+    "terminal.integrated.profiles.linux": {
+        "zsh": {
+            "path": "zsh"
+        },
+        "bash": {
+            "path": "bash",
+            "icon": "terminal-bash"
+        },
+        "fish": {
+            "path": "fish"
+        },
+        "tmux": {
+            "path": "tmux",
+            "icon": "terminal-tmux"
+        },
+        "pwsh": {
+            "path": "pwsh",
+            "icon": "terminal-powershell"
+        }
+    },
+    "terminal.integrated.fontFamily": "MesloLGS NF",
+    "terminal.integrated.fontSize": 11,
+    "[python]": {
+        "editor.formatOnType": true
+    },
+    "platformio-ide.useDevelopmentPIOCore": true,
+    "workbench.iconTheme": "material-icon-theme",
+    "material-icon-theme.files.associations": {
+        "platformio.ini": "../../icons/pio",
+        "sdkconfig.*": "../../icons/esp",
+        "Doxyfile": "Settings",
+        "*.suppress": "Stryker"
+    },
+    "material-icon-theme.folders.associations": {
+        "unittest": "Test",
+        "platform": "Constant"
+    },
+    "cmake.configureOnOpen": false,
+    "doxdocgen.generic.authorName": "Bruno de Santana",
+    "doxdocgen.generic.authorEmail": "b.desantanaalves@cleio.com",
+    "files.associations": {
+        "*.defaults": "properties",
+        "*.esp-wrover-kit": "properties"
+    },
+    "workbench.editorAssociations": {
+        "*.pdf": "pdf.preview"
+    },
+    "diffEditor.ignoreTrimWhitespace": false,
+    "workbench.colorTheme": "Dracula Theme",
+    "nrf-connect.enableTelemetry": true,
+    "cmake.showOptionsMovedNotification": false,
+    "material-icon-theme.files.customClones": [],
+    "cmake.pinnedCommands": [
+        "workbench.action.tasks.configureTaskRunner",
+        "workbench.action.tasks.runTask"
+    ],
+    "dart.flutterSdkPath": "/home/bruno/flutter_dev/flutter",
+    "idf.showOnboardingOnInit": false,
+    "idf.pythonInstallPath": "/home/bruno/.asdf/shims/python",
+    "idf.hasWalkthroughBeenShown": true,
+    "editor.inlineSuggest.suppressSuggestions": true,
+    "cody.suggestions.mode": "auto-edit",
+    "atlascode.jira.lastCreateSiteAndProject": {
+        "siteId": "78b17512-3be1-4aeb-af6e-714467ade5bf",
+        "projectKey": ""
+    },
+    "docker.extension.enableComposeLanguageServer": false,
+    "notebook.formatOnSave.enabled": true,
+    "github.copilot.enable": {
+        "*": true,
+        "plaintext": false,
+        "markdown": false,
+        "scminput": false
+    },
+    "[cpp]": {
+        "editor.defaultFormatter": "xaver.clang-format"
+    },
+    "[c]": {
+        "editor.defaultFormatter": "xaver.clang-format"
+    },
+    "[dockercompose]": {
+        "editor.insertSpaces": true,
+        "editor.tabSize": 2,
+        "editor.autoIndent": "advanced",
+        "editor.quickSuggestions": {
+            "other": true,
+            "comments": false,
+            "strings": true
+        },
+        "editor.defaultFormatter": "redhat.vscode-yaml"
+    },
+    "[github-actions-workflow]": {
+        "editor.defaultFormatter": "redhat.vscode-yaml"
+    },
+    "github.copilot.nextEditSuggestions.enabled": true,
+    "terminal.integrated.shellIntegration.enabled": true,
+    "terminal.integrated.shellIntegration.decorationsEnabled": "both",
+    "terminal.integrated.shellIntegration.showWelcome": false,
+    "terminal.integrated.commandTimeout": 30000,
+    "claudeCode.preferredLocation": "panel",
+    "hediet.vscode-drawio.resizeImages": null,
+    "editor.formatOnSave": true
+}
