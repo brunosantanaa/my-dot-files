@@ -2,7 +2,11 @@
 # VSCode settings, keybindings, snippets and profiles installer
 
 DOTFILES_DIR="${1:-$HOME/.dotfiles}"
-VSCODE_USER="$HOME/.config/Code/User"
+if [[ "$(uname -s)" == "Darwin" ]]; then
+    VSCODE_USER="$HOME/Library/Application Support/Code/User"
+else
+    VSCODE_USER="$HOME/.config/Code/User"
+fi
 
 # ─── Check VSCode ──────────────────────────────────────────────────────────────
 if ! command -v code &>/dev/null; then
@@ -38,11 +42,12 @@ fi
 # ─── Profiles ─────────────────────────────────────────────────────────────────
 _get_profile_location() {
     local profile_name="$1"
-    python3 - "$profile_name" <<'PYEOF'
-import json, sys
+    python3 - "$profile_name" "$VSCODE_USER" <<'PYEOF'
+import json, sys, os
 
 profile_name = sys.argv[1]
-storage_path = f"{__import__('os').path.expanduser('~')}/.config/Code/User/globalStorage/storage.json"
+vscode_user = sys.argv[2]
+storage_path = os.path.join(vscode_user, "globalStorage", "storage.json")
 try:
     with open(storage_path) as f:
         d = json.load(f)
