@@ -40,59 +40,55 @@ if ls "$DOTFILES_DIR/vscode/snippets/"*.json &>/dev/null; then
 fi
 
 # ─── Profiles ─────────────────────────────────────────────────────────────────
-_get_profile_location() {
+# Register a profile in storage.json (creates it if missing) and return its location ID.
+# Uses a deterministic 8-char hex ID derived from the profile name so IDs are
+# stable and reproducible across machines.
+_ensure_profile() {
     local profile_name="$1"
     python3 - "$profile_name" "$VSCODE_USER" <<'PYEOF'
-import json, sys, os
+import json, sys, os, hashlib
 
 profile_name = sys.argv[1]
-vscode_user = sys.argv[2]
+vscode_user  = sys.argv[2]
 storage_path = os.path.join(vscode_user, "globalStorage", "storage.json")
-try:
-    with open(storage_path) as f:
-        d = json.load(f)
-    profiles_raw = d.get("userDataProfiles", "[]")
-    profiles = json.loads(profiles_raw) if isinstance(profiles_raw, str) else profiles_raw
-    for p in profiles:
-        if p.get("name") == profile_name:
-            print(p.get("location", ""))
-            break
-except Exception:
-    pass
+
+with open(storage_path) as f:
+    d = json.load(f)
+
+profiles = d.get("userDataProfiles", [])
+if isinstance(profiles, str):
+    profiles = json.loads(profiles)
+
+# Return existing location if profile already registered
+for p in profiles:
+    if p.get("name") == profile_name:
+        print(p.get("location", ""))
+        sys.exit(0)
+
+# Generate a deterministic 8-char hex ID from the profile name
+profile_id = hashlib.md5(profile_name.encode()).hexdigest()[:8]
+
+profiles.append({"name": profile_name, "location": profile_id})
+d["userDataProfiles"] = profiles
+
+with open(storage_path, "w") as f:
+    json.dump(d, f, indent=2)
+
+# Create the profile directory so VSCode and the code CLI recognize it
+profile_dir = os.path.join(vscode_user, "profiles", profile_id)
+os.makedirs(profile_dir, exist_ok=True)
+
+print(profile_id)
 PYEOF
 }
 
-# Pass 1: Install extensions for all profiles
-# Running all installs first ensures VSCode registers every profile in storage.json
-# before we try to read profile locations in pass 2.
-echo "==> Installing VSCode profile extensions..."
-for profile_src in "$DOTFILES_DIR/vscode/profiles/"/*/; do
-    profile_name=$(basename "$profile_src")
-    [ -f "$profile_src/extensions.txt" ] || continue
-    echo "  --> Profile: $profile_name"
-    while IFS= read -r ext_id; do
-        [[ -z "$ext_id" || "$ext_id" == \#* ]] && continue
-        echo "      installing: $ext_id"
-        code --profile "$profile_name" --install-extension "$ext_id" --force 2>/dev/null
-    done < "$profile_src/extensions.txt"
-done
-
-# Pass 2: Link settings & snippets for all profiles
-echo "==> Linking VSCode profile settings..."
-_profiles_missing=()
+echo "==> Configuring VSCode profiles..."
 for profile_src in "$DOTFILES_DIR/vscode/profiles/"/*/; do
     profile_name=$(basename "$profile_src")
     echo "  --> Profile: $profile_name"
 
-    profile_location=$(_get_profile_location "$profile_name")
-
-    if [ -z "$profile_location" ]; then
-        _profiles_missing+=("$profile_name")
-        echo "      warning: profile location not found — settings not linked"
-        continue
-    fi
-
-    profile_dest="$VSCODE_USER/profiles/$profile_location"
+    profile_id=$(_ensure_profile "$profile_name")
+    profile_dest="$VSCODE_USER/profiles/$profile_id"
     mkdir -p "$profile_dest/snippets"
 
     # Link settings.json
@@ -116,17 +112,16 @@ for profile_src in "$DOTFILES_DIR/vscode/profiles/"/*/; do
             echo "      linked: snippets/$name"
         done
     fi
-done
 
-if [ ${#_profiles_missing[@]} -gt 0 ]; then
-    echo ""
-    echo "  warning: settings not linked for profiles:"
-    for p in "${_profiles_missing[@]}"; do
-        echo "    - $p"
-    done
-    echo "  Open VSCode once to initialize the profiles, then re-run:"
-    echo "    zsh $DOTFILES_DIR/vscode/install.zsh"
-fi
+    # Install extensions (profile now exists so code CLI accepts --profile)
+    if [ -f "$profile_src/extensions.txt" ]; then
+        while IFS= read -r ext_id; do
+            [[ -z "$ext_id" || "$ext_id" == \#* ]] && continue
+            echo "      installing: $ext_id"
+            code --profile "$profile_name" --install-extension "$ext_id" --force 2>/dev/null
+        done < "$profile_src/extensions.txt"
+    fi
+done
 
 # ─── Inject author info for doxygen (local only, not stored in repo) ──────────
 _inject_author_settings() {
@@ -162,10 +157,9 @@ if [[ -n "$AUTHOR_NAME" ]]; then
     for profile_src in "$DOTFILES_DIR/vscode/profiles/"/*/; do
         profile_name=$(basename "$profile_src")
         [ -f "$profile_src/settings.json" ] || continue
-        profile_location=$(_get_profile_location "$profile_name")
-        [ -z "$profile_location" ] && continue
+        profile_id=$(_ensure_profile "$profile_name")
         _inject_author_settings \
-            "$VSCODE_USER/profiles/$profile_location/settings.json" \
+            "$VSCODE_USER/profiles/$profile_id/settings.json" \
             "$AUTHOR_NAME" "$AUTHOR_EMAIL"
         echo "  injected into: $profile_name"
     done
